@@ -29,7 +29,7 @@ $(function () {
         //loop through the names and check if there is atleast 5 characters, ensuring it is not empty
         it("has names", function () {
             for (let i = 0; i < allFeeds.length; i++) {
-                expect(allFeeds[i].name.length).toBeGreaterThan(4);
+                expect(allFeeds[i].name.length).toBeGreaterThan(0);
             }
         });
 
@@ -84,9 +84,14 @@ $(function () {
         //scope placerholder
         let oldFeed;
 
-        beforeEach(function (done) {
+        beforeEach(function () {
             //set oldFeed = to the current loaded feed html. Then load feed 1
-            oldfeed = document.querySelector(".feed").innerHTML;
+            loadFeed(0);
+            oldFeed = document.querySelector(".feed").innerHTML;
+        });
+
+        beforeEach(function (done) {
+            //load new feed
             loadFeed(1, function () {
                 done();
             });
@@ -94,7 +99,7 @@ $(function () {
 
         it("loads new items", function (done) {
             //checks whether the old feed html is not equal to the new on.
-            expect(document.querySelector(".feed").innerHTML).not.toBe(oldfeed);
+            expect(document.querySelector(".feed").innerHTML).not.toBe(oldFeed);
             done();
 
         });
