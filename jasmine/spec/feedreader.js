@@ -29,19 +29,19 @@ $(function () {
         //loop through the names and check if there is atleast 5 characters, ensuring it is not empty
         it("has names", function () {
             for (let i = 0; i < allFeeds.length; i++) {
-                expect(allFeeds[i].name.length).toBeGreaterThan(4)
+                expect(allFeeds[i].name.length).toBeGreaterThan(4);
             }
-        })
+        });
 
         //loop through the links to determine if the first characters match given array. Could also be used to make sure all links are using https instead of only http
         it("has links", function () {
             let httpArray = ("h t t p").split(" ");
             for (let i = 0; i < allFeeds.length; i++) {
                 for (let e = 0; e < httpArray.length; e++) {
-                    expect(allFeeds[i].url[e]).toBe(httpArray[e])
+                    expect(allFeeds[i].url[e]).toBe(httpArray[e]);
                 }
             }
-        })
+        });
     });
 
     describe("The menu", function () {
@@ -49,36 +49,36 @@ $(function () {
         //checks to make sure the meny-hidden class is present on the body
         let body = document.querySelector("body");
         it("Is hidden by default", function () {
-            expect(body.classList.toString()).toBe("menu-hidden")
-        })
+            expect(body.classList.toString()).toBe("menu-hidden");
+        });
 
         //simulate a click to open the meny, then check to see if menu-hidden is gone
         it("Menu is able to show", function () {
             document.querySelector(".menu-icon-link").click();
             expect(body.classlist).toBeUndefined();
-        })
+        });
 
         //simulate a click that closes the menu and then makes sure menu-hidden is placed back on the body element
         it("Menu is able to hide", function () {
             document.querySelector(".menu-icon-link").click();
             expect(body.classList.toString()).toBe("menu-hidden");
-        })
-    })
+        });
+    });
 
     describe("Initial Entries", function () {
 
         beforeEach(function (done) {
             loadFeed(0, function () {
                 done();
-            })
-        })
+            });
+        });
         it("loads items initally", function (done) {
             //check the grandchild of .feed and make sure it has a class of entry on it
             expect(document.querySelector(".feed").firstElementChild.firstElementChild.classList.toString()).toBe("entry");
             done();
 
-        })
-    })
+        });
+    });
 
     describe("New feed selection", function () {
         //scope placerholder
@@ -89,15 +89,15 @@ $(function () {
             oldfeed = document.querySelector(".feed").innerHTML;
             loadFeed(1, function () {
                 done();
-            })
-        })
+            });
+        });
 
         it("loads new items", function (done) {
             //checks whether the old feed html is not equal to the new on.
             expect(document.querySelector(".feed").innerHTML).not.toBe(oldfeed);
             done();
 
-        })
-    })
+        });
+    });
 
 }());
